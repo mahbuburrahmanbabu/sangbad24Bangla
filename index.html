@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সংবাদ ২৪ বাংলা | সত্যের সন্ধানে</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f3f5;color:#222}
+header{background:#fff;padding:22px 5%;border-bottom:4px solid #b5121b}
+header h1{margin:0;color:#b5121b;font-size:30px}
+header p{margin:8px 0 0;color:#555}
+nav{background:#b5121b;padding:12px 4%;display:flex;flex-wrap:wrap;gap:16px}
+nav a{color:white;text-decoration:none}
+main{max-width:1100px;margin:20px auto;padding:0 15px}
+.breaking{background:#fff;padding:14px;margin-bottom:20px;border-left:5px solid #b5121b}
+.hero{background:#242424;color:white;padding:35px 25px;border-radius:8px}
+.hero h2{font-size:28px}
+h2.section{border-left:5px solid #b5121b;padding-left:10px;margin-top:28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{background:white;padding:20px;border:1px solid #ddd;border-radius:6px}
+.card h3{color:#b5121b;margin-top:0}
+footer{background:#171717;color:white;padding:25px 5%;margin-top:35px;line-height:1.9}
+button{background:#b5121b;color:white;border:0;padding:10px 15px;cursor:pointer}
+@media(max-width:650px){.grid{grid-template-columns:1fr}header h1{font-size:24px}.hero h2{font-size:23px}}
+</style>
+</head>
+<body>
+<header>
+<h1>সংবাদ ২৪ বাংলা</h1>
+<p>সত্যের সন্ধানে, সংবাদের সাথে</p>
+</header>
+<nav>
+<a href="#home">প্রচ্ছদ</a>
+<a href="#bangladesh">বাংলাদেশ</a>
+<a href="#world">আন্তর্জাতিক</a>
+<a href="#politics">রাজনীতি</a>
+<a href="#sports">খেলাধুলা</a>
+<a href="#islam">ইসলাম</a>
+<a href="#technology">প্রযুক্তি</a>
+<a href="#video">নিউজ রুম</a>
+<a href="#gallery">ছবি গ্যালারি</a>
+<a href="#about">আমাদের সম্পর্কে</a>
+</nav>
+<main id="home">
+<div class="breaking"><b>বিশেষ ঘোষণা:</b> সংবাদ ২৪ বাংলা — সত্যের সন্ধানে।</div>
+<section class="hero">
+<h2>স্বাগতম সংবাদ ২৪ বাংলায়</h2>
+<h2 class="section">সর্বশেষ সংবাদ</h2>
+<div id="firebase-news">
+  <p>খবর লোড হচ্ছে...</p>
+</div>
+<p>দেশ ও বিশ্বের গুরুত্বপূর্ণ সংবাদ, তথ্য ও প্রতিবেদন জানতে আমাদের সঙ্গে থাকুন।</p>
+</section>
+<h2 class="section">সংবাদের বিভাগ</h2>
+<div class="grid">
+<article class="card" id="bangladesh"><h3>বাংলাদেশ</h3><p>জাতীয় সংবাদ এখানে প্রকাশ করা হবে।</p></article>
+<article class="card" id="world"><h3>আন্তর্জাতিক</h3><p>বিশ্বের গুরুত্বপূর্ণ খবর এখানে প্রকাশ করা হবে।</p></article>
+<article class="card" id="politics"><h3>রাজনীতি</h3><p>রাজনৈতিক সংবাদ ও প্রতিবেদন।</p></article>
+<article class="card" id="sports"><h3>খেলাধুলা</h3><p>দেশ-বিদেশের খেলাধুলার খবর।</p></article>
+<article class="card" id="islam"><h3>ইসলাম</h3><p>ইসলামিক শিক্ষা ও গুরুত্বপূর্ণ তথ্য।</p></article>
+<article class="card" id="technology"><h3>প্রযুক্তি</h3><p>বিজ্ঞান ও প্রযুক্তির খবর।</p></article>
+</div>
+<h2 class="section" id="video">নিউজ রুম ও ভিডিও</h2>
+<div class="card">
+<h3>সংবাদ ২৪ বাংলা নিউজ রুম</h3>
+<p>আমাদের ভিডিও তৈরি হলে তার YouTube লিংক এখানে যুক্ত করা হবে।</p>
+<a href="https://www.youtube.com/" target="_blank"><button>ইউটিউব খুলুন</button></a>
+</div>
+<h2 class="section" id="gallery">ছবি গ্যালারি</h2>
+<div class="card"><p>এখানে সংবাদভিত্তিক ছবি প্রকাশ করা হবে।</p></div>
+<h2 class="section" id="about">আমাদের সম্পর্কে</h2>
+<div class="card">
+<p><b>সম্পাদক ও প্রকাশক:</b> মাহবুবুর রহমান বাবু</p>
+<p><b>অফিস:</b> দারুল আমান বাজার, নান্দ্রা, ডামুড্যা, শরীয়তপুর।</p>
+</div>
+</main>
+<footer>
+<b>সংবাদ ২৪ বাংলা</b>
+<p>সত্যের সন্ধানে, সংবাদের সাথে</p>
+<p>সম্পাদক ও প্রকাশক: মাহবুবুর রহমান বাবু</p>
+<p>© সংবাদ ২৪ বাংলা — সর্বস্বত্ব সংরক্ষিত</p>
+</footer>
+[2:17 AM, 10/23/2026] Mahbubur Rahman: <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDAWw7VG0UyWq8HNaLnk7Y46xHlZSaYPco",
+    authDomain: "sangbad24bangla-a9c20.firebaseapp.com",
+    projectId: "sangbad24bangla-a9c20",
+    storageBucket: "sangbad24bangla-a9c20.firebasestorage.app",
+    messagingSenderId: "324521515174",
+    appId: "1:324521515174:web:f89a4e4d629e2ac257fc67"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  async function loadNews() {
+  const newsBox = document.getElementById("firebase-news");
+
+  try {
+    const snapshot = await getDocs(collection(db, "news"));
+
+    if (snapshot.empty) {
+      newsBox.textContent = "এখনো কোনো খবর প্রকাশ করা হয়নি।";
+      return;
+    }
+
+    newsBox.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const article = document.createElement("article");
+      const title = document.createElement("h3");
+      const content = document.createElement("p");
+
+      title.textContent = data.title || data.headline || "সংবাদের শিরোনাম";
+      content.textContent = data.content || data.description || data.body || "";
+
+      article.appendChild(title);
+      article.appendChild(content);
+      newsBox.appendChild(article);
+    });
+  } catch (error) {
+    console.error("খবর লোড করার সমস্যা:", error);
+    newsBox.textContent = "খবর লোড করা যায়নি।";
+  }
+}
+
+loadNews();
+</script>
+</body>
+</html>
