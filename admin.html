@@ -103,7 +103,7 @@ document.getElementById("newsForm").addEventListener("submit", async e => {
   status.textContent = "সংবাদ সফলভাবে প্রকাশ হয়েছে!";
   document.getElementById("newsForm").reset();
  } catch (error) {
-  status.textContent = "প্রকাশ হয়নি। Firebase অনুমতি পরীক্ষা করতে হবে।";
+ status.textContent = "লগইন হয়নি: " + error.code + " — " + error.message;
   console.error(error);
  }
 });
