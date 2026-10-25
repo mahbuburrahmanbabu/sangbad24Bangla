@@ -71,8 +71,7 @@ document.getElementById("loginForm").addEventListener("submit", async e => {
   );
   status.textContent = "লগইন সফল হয়েছে।";
  } catch (error) {
-  status.textContent = "লগইন হয়নি। ইমেইল, পাসওয়ার্ড ও Firebase সেটিংস পরীক্ষা করুন।";
-  console.error(error);
+status.textContent = "লগইন হয়নি: " + error.code + " — " + error.message;
  }
 });
 
