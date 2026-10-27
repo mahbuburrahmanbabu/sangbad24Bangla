@@ -121,7 +121,25 @@ button{background:#b5121b;color:white;border:0;padding:10px 15px;cursor:pointer}
       content.textContent = data.content || data.description || data.body || "";
 
       article.appendChild(title);
-      article.appendChild(content);
+     if (data.imageUrl) {
+        const image = document.createElement("img");
+        image.src = data.imageUrl;
+        image.alt = data.title || "সংবাদের ছবি";
+        image.style.width = "100%";
+        image.style.maxHeight = "400px";
+        image.style.objectFit = "contain";
+        image.loading = "lazy";
+        article.appendChild(image);
+      }
+
+      if (data.videoUrl) {
+        const video = document.createElement("video");
+        video.src = data.videoUrl;
+        video.controls = true;
+        video.playsInline = true;
+        video.style.width = "100%";
+        article.appendChild(video);
+      }
       newsBox.appendChild(article);
     });
   } catch (error) {
