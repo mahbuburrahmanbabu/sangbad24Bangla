@@ -1,193 +1,111 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>সংবাদ ২৪ বাংলা — অ্যাডমিন</title>
-<style>
-body{font-family:Arial,sans-serif;background:#f2f5f3;margin:0;padding:18px}
-.box{max-width:600px;margin:20px auto;background:white;padding:20px;border-radius:12px;box-shadow:0 2px 10px #ccc}
-h2{text-align:center;color:#075e36}
-input,textarea,button{width:100%;box-sizing:border-box;padding:12px;margin:8px 0;font-size:16px}
-textarea{min-height:180px}
-button{background:#075e36;color:white;border:0;border-radius:6px;cursor:pointer}
-button:disabled{opacity:.6}
-#status{font-weight:bold;white-space:pre-wrap;overflow-wrap:anywhere}
-label{display:block;margin-top:12px;font-weight:bold}
-.hint{font-size:14px;color:#555}
-</style>
-</head>
-<body>
-<div class="box">
-<h2>সংবাদ ২৪ বাংলা</h2>
-<h3>অ্যাডমিন লগইন</h3>
-
-<form id="loginForm">
-<input id="email" type="email" placeholder="অ্যাডমিন ইমেইল" required>
-<input id="password" type="password" placeholder="পাসওয়ার্ড" required>
-<button type="submit">লগইন</button>
-</form>
-
-<div id="publisher" hidden>
-<h3>নতুন সংবাদ প্রকাশ করুন</h3>
-<form id="newsForm">
-<input id="title" type="text" placeholder="সংবাদের শিরোনাম" required>
-<input id="category" type="text" placeholder="বিভাগ (যেমন: বাংলাদেশ)" required>
-<textarea id="content" placeholder="সংবাদের বিস্তারিত লিখুন" required></textarea>
-
-<label for="newsImage">সংবাদের ছবি নির্বাচন করুন</label>
-<input id="newsImage" type="file" accept="image/*">
-
-<label for="newsVideo">সংবাদের ভিডিও নির্বাচন করুন</label>
-<input id="newsVideo" type="file" accept="video/*">
-
-<p class="hint">ছবি অথবা ভিডিও দেওয়া ঐচ্ছিক। বড় ভিডিও আপলোড হতে সময় লাগতে পারে।</p>
-
-<button id="publishButton" type="submit">সংবাদ প্রকাশ করুন</button>
-</form>
-<button id="logout" type="button">লগআউট</button>
-</div>
-
-<p id="status" role="status" aria-live="polite"></p>
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
- getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
- getFirestore, collection, addDoc, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
- apiKey: "AIzaSyDAWw7VG0UyWq8HNaLnk7Y46xHlZSaYPco",
- authDomain: "sangbad24bangla-a9c20.firebaseapp.com",
- projectId: "sangbad24bangla-a9c20",
- storageBucket: "sangbad24bangla-a9c20.firebasestorage.app",
- messagingSenderId: "324521515174",
- appId: "1:324521515174:web:f89a4e4d629e2ac257fc67"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const status = document.getElementById("status");
-const publishButton = document.getElementById("publishButton");
-
-const CLOUD_NAME = "xtgo8tku";
-const UPLOAD_PRESET = "news24_upload";
-
-async function uploadToCloudinary(file, type) {
- const formData = new FormData();
- formData.append("file", file);
- formData.append("upload_preset", UPLOAD_PRESET);
-
- const url = https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${type}/upload;
- const response = await fetch(url, {
-  method: "POST",
-  body: formData
- });
- const result = await response.json();
-
- if (!response.ok) {
-  throw new Error(result.error?.message || "ফাইল আপলোড ব্যর্থ হয়েছে।");
- }
- return result.secure_url;
-}
-
-document.getElementById("loginForm").addEventListener("submit", async e => {
- e.preventDefault();
- status.textContent = "লগইন হচ্ছে...";
- try {
-  await signInWithEmailAndPassword(
-   auth,
-   document.getElementById("email").value.trim(),
-   document.getElementById("password").value
-  );
-  status.textContent = "লগইন সফল হয়েছে।";
- } catch (error) {
-  status.textContent = "লগইন হয়নি: " + error.code + " — " + error.message;
- }
-});
-
-onAuthStateChanged(auth, user => {
- document.getElementById("loginForm").hidden = !!user;
- document.getElementById("publisher").hidden = !user;
- if (!user) status.textContent = "অ্যাডমিন লগইন করুন।";
-});
-
-document.getElementById("newsForm").addEventListener("submit", async e => {
- e.preventDefault();
-
- if (!auth.currentUser) {
-  status.textContent = "প্রথমে অ্যাডমিন লগইন করুন।";
-  return;
- }
-
- const title = document.getElementById("title").value.trim();
- const category = document.getElementById("category").value.trim();
- const content = document.getElementById("content").value.trim();
- const imageFile = document.getElementById("newsImage").files[0];
- const videoFile = document.getElementById("newsVideo").files[0];
-
- if (!title || !category || !content) {
-  status.textContent = "শিরোনাম, বিভাগ ও বিস্তারিত লিখুন।";
-  return;
- }
-
- publishButton.disabled = true;
-
- try {
-  let imageUrl = "";
-  let videoUrl = "";
-
-  if (imageFile) {
-   if (!imageFile.type.startsWith("image/")) {
-    throw new Error("সঠিক ছবির ফাইল নির্বাচন করুন।");
-   }
-   status.textContent = "ছবি আপলোড হচ্ছে...";
-   imageUrl = await uploadToCloudinary(imageFile, "image");
-  }
-
-  if (videoFile) {
-   if (!videoFile.type.startsWith("video/")) {
-    throw new Error("সঠিক ভিডিও ফাইল নির্বাচন করুন।");
-   }
-   status.textContent = "ভিডিও আপলোড হচ্ছে...";
-   videoUrl = await uploadToCloudinary(videoFile, "video");
-  }
-
-  status.textContent = "সংবাদ সংরক্ষণ হচ্ছে...";
-
-  await addDoc(collection(db, "news"), {
-   title,
-   category,
-   content,
-   imageUrl,
-   videoUrl,
-   createdAt: serverTimestamp()
-  });
-
-  status.textContent = "সংবাদ সফলভাবে প্রকাশ হয়েছে!";
-  document.getElementById("newsForm").reset();
-
- } catch (error) {
-  console.error(error);
-  status.textContent = "প্রকাশ করা যায়নি: " + error.message;
- } finally {
-  publishButton.disabled = false;
- }
-});
-
-document.getElementById("logout").addEventListener("click", async () => {
- try {
-  await signOut(auth);
-  status.textContent = "লগআউট হয়েছে।";
- } catch (error) {
-  status.textContent = "লগআউট হয়নি: " + error.message;
- }
-});
-</script>
-</body>
+<!DOCTYPE html>  <html lang="bn">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>সংবাদ ২৪ বাংলা — অ্যাডমিন</title>  
+<style>  
+body{font-family:Arial,sans-serif;background:#f2f5f3;margin:0;padding:18px}  
+.box{max-width:600px;margin:20px auto;background:white;padding:20px;border-radius:12px;box-shadow:0 2px 10px #ccc}  
+h2{text-align:center;color:#075e36}  
+input,textarea,button{width:100%;box-sizing:border-box;padding:12px;margin:8px 0;font-size:16px}  
+textarea{min-height:180px}  
+button{background:#075e36;color:white;border:0;border-radius:6px;cursor:pointer}  
+#status{font-weight:bold;white-space:pre-wrap}  
+</style>  
+</head>  
+<body>  
+<div class="box">  
+<h2>সংবাদ ২৪ বাংলা</h2>  
+<h3>অ্যাডমিন লগইন</h3>  
+<form id="loginForm">  
+<input id="email" type="email" placeholder="অ্যাডমিন ইমেইল" required>  
+<input id="password" type="password" placeholder="পাসওয়ার্ড" required>  
+<button type="submit">লগইন</button>  
+</form>  <div id="publisher" hidden>  
+<h3>নতুন সংবাদ প্রকাশ করুন</h3>  
+<form id="newsForm">  
+<input id="title" type="text" placeholder="সংবাদের শিরোনাম" required>  
+<input id="category" type="text" placeholder="বিভাগ (যেমন: বাংলাদেশ)" required>  
+<textarea id="content" placeholder="সংবাদের বিস্তারিত লিখুন" required></textarea>  
+<button type="submit">সংবাদ প্রকাশ করুন</button>  
+</form>  
+<button id="logout" type="button">লগআউট</button>  
+</div>  
+<p id="status"></p>  
+</div>  <script type="module">  
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";  
+import {  
+ getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut  
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";  
+import {  
+ getFirestore, collection, addDoc, serverTimestamp  
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";  
+  
+const firebaseConfig = {  
+apiKey: "AIzaSyDAWw7VG0UyWq8HNaLnk7Y46xHlZSaYPco",  
+ authDomain: "sangbad24bangla-a9c20.firebaseapp.com",  
+ projectId: "sangbad24bangla-a9c20",  
+ storageBucket: "sangbad24bangla-a9c20.firebasestorage.app",  
+ messagingSenderId: "324521515174",  
+ appId: "1:324521515174:web:f89a4e4d629e2ac257fc67"  
+};  
+  
+const app = initializeApp(firebaseConfig);  
+const auth = getAuth(app);  
+const db = getFirestore(app);  
+const status = document.getElementById("status");  
+  
+document.getElementById("loginForm").addEventListener("submit", async e => {  
+ e.preventDefault();  
+ status.textContent = "লগইন হচ্ছে...";  
+ try {  
+  await signInWithEmailAndPassword(  
+   auth,  
+   document.getElementById("email").value.trim(),  
+   document.getElementById("password").value  
+  );  
+  status.textContent = "লগইন সফল হয়েছে।";  
+ } catch (error) {  
+status.textContent = "লগইন হয়নি: " + error.code + " — " + error.message;  
+ }  
+});  
+  
+onAuthStateChanged(auth, user => {  
+ document.getElementById("loginForm").hidden = !!user;  
+ document.getElementById("publisher").hidden = !user;  
+ if (!user) status.textContent = "অ্যাডমিন লগইন করুন।";  
+});  
+  
+document.getElementById("newsForm").addEventListener("submit", async e => {  
+ e.preventDefault();  
+ if (!auth.currentUser) {  
+  status.textContent = "প্রথমে অ্যাডমিন লগইন করুন।";  
+  return;  
+ }  
+ const title = document.getElementById("title").value.trim();  
+ const category = document.getElementById("category").value.trim();  
+ const content = document.getElementById("content").value.trim();  
+ if (!title || !category || !content) {  
+  status.textContent = "সব ঘর পূরণ করুন।";  
+  return;  
+ }  
+ status.textContent = "সংবাদ প্রকাশ হচ্ছে...";  
+ try {  
+  await addDoc(collection(db, "news"), {  
+   title, category, content,  
+   createdAt: serverTimestamp()  
+  });  
+  status.textContent = "সংবাদ সফলভাবে প্রকাশ হয়েছে!";  
+  document.getElementById("newsForm").reset();  
+ } catch (error) {  
+ status.textContent = "লগইন হয়নি: " + error.code + " — " + error.message;  
+  console.error(error);  
+ }  
+});  
+  
+document.getElementById("logout").addEventListener("click", async () => {  
+ await signOut(auth);  
+ status.textContent = "লগআউট হয়েছে।";  
+});  
+</script>  </body>  
 </html>
