@@ -121,6 +121,7 @@ button{background:#b5121b;color:white;border:0;padding:10px 15px;cursor:pointer}
       content.textContent = data.content || data.description || data.body || "";
 
       article.appendChild(title);
+      article.appendChild(content);
      if (data.imageUrl) {
         const image = document.createElement("img");
         image.src = data.imageUrl;
