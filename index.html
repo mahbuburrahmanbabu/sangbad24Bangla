@@ -22,6 +22,26 @@ h2.section{border-left:5px solid #b5121b;padding-left:10px;margin-top:28px}
 .card h3{color:#b5121b;margin-top:0}
 footer{background:#171717;color:white;padding:25px 5%;margin-top:35px;line-height:1.9}
 button{background:#b5121b;color:white;border:0;padding:10px 15px;cursor:pointer}
+article{
+  background:#fff;
+  padding:18px;
+  margin:15px 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+
+article h3{
+  color:#b5121b;
+  font-size:22px;
+}
+
+article p{
+  color:#333;
+  font-size:17px;
+  line-height:1.9;
+  white-space:pre-wrap;
+  display:block;
+}
 @media(max-width:650px){.grid{grid-template-columns:1fr}header h1{font-size:24px}.hero h2{font-size:23px}}
 </style>
 </head>
@@ -116,30 +136,33 @@ button{background:#b5121b;color:white;border:0;padding:10px 15px;cursor:pointer}
       const article = document.createElement("article");
       const title = document.createElement("h3");
       const content = document.createElement("p");
+const image = document.createElement("img");
 
+image.src = data.imageUrl || data.image || "";
+image.style.width = "100%";
+image.style.maxWidth = "600px";
+image.style.display = image.src ? "block" : "none";
+image.style.borderRadius = "8px";
       title.textContent = data.title || data.headline || "সংবাদের শিরোনাম";
       content.textContent = data.content || data.description || data.body || "";
-
+      content.style.whiteSpace = "pre-wrap";
+console.log("সংবাদের বিস্তারিত:", data.content);
+article.appendChild(image);
       article.appendChild(title);
-     if (data.imageUrl) {
-        const image = document.createElement("img");
-        image.src = data.imageUrl;
-        image.alt = data.title || "সংবাদের ছবি";
-        image.style.width = "100%";
-        image.style.maxHeight = "400px";
-        image.style.objectFit = "contain";
-        image.loading = "lazy";
-        article.appendChild(image);
-      }
+      article.appendChild(content);
+      const detailsLink = document.createElement("a");
 
-      if (data.videoUrl) {
-        const video = document.createElement("video");
-        video.src = data.videoUrl;
-        video.controls = true;
-        video.playsInline = true;
-        video.style.width = "100%";
-        article.appendChild(video);
-      }
+detailsLink.href = "news-details.html?id=" + doc.id;
+detailsLink.textContent = "বিস্তারিত পড়ুন";
+detailsLink.style.display = "inline-block";
+detailsLink.style.background = "#08783d";
+detailsLink.style.color = "white";
+detailsLink.style.padding = "10px 15px";
+detailsLink.style.marginTop = "10px";
+detailsLink.style.textDecoration = "none";
+detailsLink.style.borderRadius = "5px";
+
+article.appendChild(detailsLink);
       newsBox.appendChild(article);
     });
   } catch (error) {
