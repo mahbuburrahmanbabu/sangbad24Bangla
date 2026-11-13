@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সংবাদের বিস্তারিত | সংবাদ ২৪ বাংলা</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f5;margin:0;color:#222}
+header{background:#087a43;color:white;padding:18px;text-align:center}
+main{max-width:850px;margin:20px auto;background:white;padding:20px;border-radius:8px}
+h1{font-size:25px;line-height:1.5}
+#content{font-size:18px;line-height:1.9;white-space:pre-wrap}
+img,video{max-width:100%;height:auto;margin:15px 0}
+a{color:#087a43}
+</style>
+</head>
+<body>
+<header>
+<h2>সংবাদ ২৪ বাংলা</h2>
+<p>সত্যের সন্ধানে, সংবাদের সাথে</p>
+</header>
+<main>
+<a href="index.html">← মূল পাতায় ফিরুন</a>
+<h1 id="title">সংবাদের শিরোনাম</h1>
+<img id="image" style="display:none">
+<video id="video" controls style="display:none"></video>
+<div id="content">সংবাদের বিস্তারিত লোড হচ্ছে...</div>
+</main>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDAWw7VG0UyWq8HNaLnk7Y46xHlZSaYPco",
+authDomain: "sangbad24bangla-a9c20.firebaseapp.com",
+projectId: "sangbad24bangla-a9c20",
+storageBucket: "sangbad24bangla-a9c20.firebasestorage.app",
+ messagingSenderId: "324521515174",
+appId: "1:324521515174:web:f89a4e4d629e2ac257fc67"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const id = new URLSearchParams(location.search).get("id");
+
+async function loadNews(){
+if(!id){document.getElementById("content").textContent="সংবাদের পরিচিতি পাওয়া যায়নি।";return;}
+try{
+const snap = await getDoc(doc(db,"news",id));
+if(!snap.exists()){document.getElementById("content").textContent="সংবাদ পাওয়া যায়নি।";return;}
+const data=snap.data();
+document.getElementById("title").textContent=data.title || data.headline || "সংবাদের শিরোনাম";
+document.getElementById("content").textContent=data.content || data.description || data.body || "";
+if(data.imageUrl){
+const img=document.getElementById("image");
+img.src=data.imageUrl;img.style.display="block";
+}
+if(data.videoUrl){
+const video=document.getElementById("video");
+video.src=data.videoUrl;video.style.display="block";
+}
+}catch(error){
+document.getElementById("content").textContent="সংবাদ লোড করা যায়নি।";
+console.error(error);
+}
+}
+loadNews();
+</script>
+</body>
+</html>
