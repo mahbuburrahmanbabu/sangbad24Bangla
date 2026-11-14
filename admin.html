@@ -40,7 +40,8 @@ label{display:block;margin-top:12px;font-weight:bold}
 
 <label for="newsVideo">সংবাদের ভিডিও নির্বাচন করুন</label>
 <input id="newsVideo" type="file" accept="video/*">
-
+<label for="youtubeUrl">YouTube ভিডিও লিংক দিন</label>
+<input id="youtubeUrl" type="url" placeholder="https://www.youtube.com/watch?v=...">
 <p class="hint">ছবি ও ভিডিও ঐচ্ছিক। বড় ভিডিও আপলোড হতে সময় লাগতে পারে।</p>
 <button id="publishButton" type="submit">সংবাদ প্রকাশ করুন</button>
 </form>
@@ -140,7 +141,7 @@ document.getElementById("newsForm").addEventListener("submit", async e => {
  try {
   let imageUrl = "";
   let videoUrl = "";
-
+let youtubeUrl = document.getElementById("youtubeUrl").value.trim();
   if (imageFile) {
    if (!imageFile.type.startsWith("image/")) {
     throw new Error("সঠিক ছবির ফাইল নির্বাচন করুন।");
@@ -163,9 +164,10 @@ document.getElementById("newsForm").addEventListener("submit", async e => {
    title,
    category,
    content,
-   imageUrl,
-   videoUrl,
-   createdAt: serverTimestamp()
+  imageUrl,
+videoUrl,
+youtubeUrl,
+createdAt: serverTimestamp()
   });
 
   status.textContent = "সংবাদ সফলভাবে প্রকাশ হয়েছে!";
