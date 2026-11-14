@@ -66,5 +66,58 @@ console.error(error);
 }
 loadNews();
 </script>
+ <div style="margin:20px 0;padding:15px;background:#f1f5f2;border-radius:8px">
+<h3>সংবাদটি শেয়ার করুন</h3>
+
+<a href="#" id="facebookShare" target="_blank"
+style="display:inline-block;background:#1877F2;color:white;padding:10px;margin:5px;text-decoration:none;border-radius:5px">
+Facebook Share
+</a>
+
+<a href="#" id="whatsappShare" target="_blank"
+style="display:inline-block;background:#25D366;color:white;padding:10px;margin:5px;text-decoration:none;border-radius:5px">
+WhatsApp Share
+</a>
+
+<button onclick="copyNewsLink()"
+style="background:#444;color:white;padding:10px;border:0;border-radius:5px">
+লিংক কপি
+</button>
+</div>
+
+<h3>YouTube ভিডিও</h3>
+<div id="youtubeBox"></div>
+
+<script>
+const newsUrl = window.location.href;
+
+document.getElementById("facebookShare").href =
+"https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(newsUrl);
+
+document.getElementById("whatsappShare").href =
+"https://api.whatsapp.com/send?text=" + encodeURIComponent(newsUrl);
+
+function copyNewsLink(){
+navigator.clipboard.writeText(newsUrl);
+alert("সংবাদের লিংক কপি হয়েছে");
+}
+</script>
+ <script>
+const params = new URLSearchParams(window.location.search);
+const youtubeLink = params.get("youtube");
+
+if (youtubeLink) {
+  const videoId = youtubeLink.match(
+    /(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/
+  );
+
+  if (videoId) {
+    document.getElementById("youtubeBox").innerHTML =
+      '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' +
+      videoId[1] +
+      '" frameborder="0" allowfullscreen></iframe>';
+  }
+}
+</script>
 </body>
 </html>
