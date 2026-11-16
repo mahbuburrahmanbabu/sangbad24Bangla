@@ -4,223 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>সংবাদ ২৪ বাংলা | সত্যের সন্ধানে</title>
+<meta name="description" content="সংবাদ ২৪ বাংলা — সত্যের সন্ধানে, সংবাদের সাথে।">
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f1f3f5;color:#222}
-header{background:#fff;padding:22px 5%;border-bottom:4px solid #b5121b}
-header h1{margin:0;color:#b5121b;font-size:30px}
-header p{margin:8px 0 0;color:#555}
-nav{background:#b5121b;padding:12px 4%;display:flex;flex-wrap:wrap;gap:16px}
-nav a{color:white;text-decoration:none}
-main{max-width:1100px;margin:20px auto;padding:0 15px}
-.breaking{background:#fff;padding:14px;margin-bottom:20px;border-left:5px solid #b5121b}
-.hero{background:#242424;color:white;padding:35px 25px;border-radius:8px}
-.hero h2{font-size:28px}
-h2.section{border-left:5px solid #b5121b;padding-left:10px;margin-top:28px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.card{background:white;padding:20px;border:1px solid #ddd;border-radius:6px}
-.card h3{color:#b5121b;margin-top:0}
-footer{background:#171717;color:white;padding:25px 5%;margin-top:35px;line-height:1.9}
-button{background:#b5121b;color:white;border:0;padding:10px 15px;cursor:pointer}
-article{
-  background:#fff;
-  padding:18px;
-  margin:15px 0;
-  border-radius:8px;
-  border:1px solid #ddd;
-}
-
-article h3{
-  color:#b5121b;
-  font-size:22px;
-}
-
-article p{
-  color:#333;
-  font-size:17px;
-  line-height:1.9;
-  white-space:pre-wrap;
-  display:block;
-}
-@media(max-width:650px){.grid{grid-template-columns:1fr}header h1{font-size:24px}.hero h2{font-size:23px}}
-  #firebase-news article{
-  background:#fff;
-  color:#222;
-  padding:18px;
-  margin:18px 0;
-  border-radius:10px;
-  border:1px solid #ddd;
-  box-shadow:0 3px 12px rgba(0,0,0,.07);
-}
-#firebase-news article img{
-  width:100%;
-  max-width:100%;
-  height:auto;
-  max-height:360px;
-  object-fit:cover;
-  border-radius:8px;
-}
-#firebase-news article h3{
-  color:#b5121b;
-  font-size:22px;
-  line-height:1.5;
-}
-#firebase-news article p{
-  color:#444;
-  font-size:16px;
-  line-height:1.8;
-}
-  header{
-  text-align:center;
-  padding:28px 15px;
-  background:#fff;
-  border-bottom:4px solid #b5121b;
-}
-header h1{
-  font-size:34px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-header p{
-  font-size:16px;
-  color:#555;
-}
-nav{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  justify-content:center;
-  box-shadow:0 3px 8px rgba(0,0,0,.15);
-}
-nav a{
-  padding:8px 10px;
-  border-radius:5px;
-  transition:.3s;
-}
-nav a:hover{
-  background:#fff;
-  color:#b5121b;
-}
-  breaking{
-  background:#b5121b;
-  color:#fff;
-  padding:13px 16px;
-  border-left:0;
-  border-radius:5px;
-  font-size:16px;
-  font-weight:bold;
-  box-shadow:0 3px 8px rgba(0,0,0,.12);
-}
-.breaking b{
-  background:#fff;
-  color:#b5121b;
-  padding:5px 9px;
-  border-radius:4px;
-  margin-right:8px;
-}
-  #firebase-news{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-  margin-top:20px;
-}
-#firebase-news article{
-  margin:0;
-  padding:15px;
-  overflow:hidden;
-  box-shadow:0 4px 14px rgba(0,0,0,.09);
-  transition:transform .2s,box-shadow .2s;
-}
-#firebase-news article:hover{
-  transform:translateY(-4px);
-  box-shadow:0 7px 18px rgba(0,0,0,.14);
-}
-#firebase-news article h3{
-  font-size:20px;
-  margin:12px 0;
-}
-#firebase-news article a{
-  background:#b5121b !important;
-  border-radius:5px;
-  font-weight:bold;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f1f3f5;color:#222;line-height:1.7}
+header{text-align:center;background:white;padding:20px 12px;border-bottom:5px solid #b5121b}
+header img{width:180px;max-width:80%;height:auto}
+header p{font-weight:bold;color:#555;margin-top:8px}
+nav{background:#b5121b;display:flex;justify-content:center;flex-wrap:wrap;gap:5px;padding:10px;position:sticky;top:0;z-index:1000}
+nav a{color:white;text-decoration:none;padding:8px 12px;border-radius:5px}
+nav a:hover{background:white;color:#b5121b}
+main{max-width:1200px;margin:22px auto;padding:0 16px}
+.breaking{background:#b5121b;color:white;padding:12px 15px;border-radius:6px;margin-bottom:20px;font-weight:bold}
+.breaking b{background:white;color:#b5121b;padding:4px 8px;border-radius:4px}
+.welcome{background:white;padding:25px;text-align:center;border-radius:9px;margin-bottom:25px;border:1px solid #ddd}
+.welcome h2{color:#b5121b;font-size:28px}
+.section-title{border-left:5px solid #b5121b;padding-left:12px;margin:28px 0 18px;font-size:24px}
+#firebase-news{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:18px 0}
+#firebase-news article{background:white;padding:16px;border-radius:9px;border:1px solid #ddd;box-shadow:0 3px 12px #0001;overflow:hidden}
+#firebase-news article img{width:100%;max-height:300px;object-fit:cover;border-radius:7px;margin-bottom:10px}
+#firebase-news article h3{color:#b5121b;font-size:21px;line-height:1.5;margin:10px 0}
+#firebase-news article p{font-size:16px;line-height:1.8;white-space:pre-wrap}
+#firebase-news article a{display:inline-block;background:#b5121b;color:white;padding:9px 16px;text-decoration:none;border-radius:5px;margin-top:12px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:white;padding:20px;border-radius:8px;border:1px solid #ddd;box-shadow:0 2px 8px #0001}
+.card h3{color:#b5121b;margin-bottom:8px}
+.video-button{display:inline-block;background:#b5121b;color:white;padding:10px 18px;border-radius:5px;text-decoration:none;margin-top:10px}
+.social{text-align:center;margin:18px 0}
+.social a{display:inline-block;color:white;text-decoration:none;padding:10px 18px;border-radius:5px;margin:5px}
+.facebook{background:#1877f2}
+.youtube{background:#e60000}
+footer{background:#171717;color:white;text-align:center;padding:28px 15px;margin-top:35px;line-height:2}
 @media(max-width:768px){
-  #firebase-news{
-    grid-template-columns:1fr;
-  }
-}
-  header{
-  text-align:center;
-  padding:15px 10px;
-}
-header img{
-  display:block;
-  width:200px;
-  max-width:85%;
-  height:auto;
-  margin:0 auto;
-}
-header p{
-  font-size:16px;
-  margin-top:10px;
-  font-weight:bold;
-}
-@media(max-width:480px){
-  header{
-    padding:12px 8px;
-  }
-  header img{
-    width:160px;
-  }
-  header p{
-    font-size:14px;
-  }
-}
-  @media(max-width:768px){
-  nav{
-    justify-content:flex-start;
-    overflow-x:auto;
-    flex-wrap:nowrap;
-    white-space:nowrap;
-    gap:8px;
-    padding:12px 10px;
-  }
-  nav a{
-    flex-shrink:0;
-    font-size:14px;
-  }
+nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap}
+nav a{flex-shrink:0;font-size:14px}
+#firebase-news{grid-template-columns:1fr}
+.grid{grid-template-columns:1fr}
+.welcome{padding:18px}
+.welcome h2{font-size:23px}
+.section-title{font-size:21px}
+main{padding:0 10px}
 }
 </style>
-  @media(max-width:768px){
-  header h1{
-    font-size:24px;
-  }
-  nav{
-    gap:12px;
-    padding:12px;
-  }
-  main{
-    padding:0 10px;
-  }
-  .hero{
-    padding:22px 16px;
-  }
-  .hero h2{
-    font-size:23px;
-  }
-  .grid{
-    grid-template-columns:1fr;
-  }
-  article{
-    padding:14px;
-  }
-}
 </head>
 <body>
 <header>
-<img src="WhatsApp Image 2026-11-14 at 20.47.26.jpeg"
-alt="সংবাদ ২৪ বাংলা"
-style="width:180px;max-width:80%;height:auto;">
+<img src="WhatsApp Image 2026-11-14 at 20.47.26.jpeg" alt="সংবাদ ২৪ বাংলা">
 <p>সত্যের সন্ধানে, সংবাদের সাথে</p>
 </header>
 <nav>
@@ -236,16 +66,16 @@ style="width:180px;max-width:80%;height:auto;">
 <a href="#about">আমাদের সম্পর্কে</a>
 </nav>
 <main id="home">
-<div class="breaking"><b>বিশেষ ঘোষণা:</b> সংবাদ ২৪ বাংলা — সত্যের সন্ধানে।</div>
-<section class="hero">
+<div class="breaking"><b>বিশেষ ঘোষণা</b> সংবাদ ২৪ বাংলা — সত্যের সন্ধানে, সংবাদের সাথে।</div>
+<section class="welcome">
 <h2>স্বাগতম সংবাদ ২৪ বাংলায়</h2>
-<h2 class="section">সর্বশেষ সংবাদ</h2>
-<div id="firebase-news">
-  <p>খবর লোড হচ্ছে...</p>
-</div>
 <p>দেশ ও বিশ্বের গুরুত্বপূর্ণ সংবাদ, তথ্য ও প্রতিবেদন জানতে আমাদের সঙ্গে থাকুন।</p>
 </section>
-<h2 class="section">সংবাদের বিভাগ</h2>
+<h2 class="section-title">সর্বশেষ সংবাদ</h2>
+<div id="firebase-news">
+<p>খবর লোড হচ্ছে...</p>
+</div>
+<h2 class="section-title">সংবাদের বিভাগ</h2>
 <div class="grid">
 <article class="card" id="bangladesh"><h3>বাংলাদেশ</h3><p>জাতীয় সংবাদ এখানে প্রকাশ করা হবে।</p></article>
 <article class="card" id="world"><h3>আন্তর্জাতিক</h3><p>বিশ্বের গুরুত্বপূর্ণ খবর এখানে প্রকাশ করা হবে।</p></article>
@@ -254,24 +84,24 @@ style="width:180px;max-width:80%;height:auto;">
 <article class="card" id="islam"><h3>ইসলাম</h3><p>ইসলামিক শিক্ষা ও গুরুত্বপূর্ণ তথ্য।</p></article>
 <article class="card" id="technology"><h3>প্রযুক্তি</h3><p>বিজ্ঞান ও প্রযুক্তির খবর।</p></article>
 </div>
-<h2 class="section" id="video">নিউজ রুম ও ভিডিও</h2>
+<h2 class="section-title" id="video">নিউজ রুম ও ভিডিও</h2>
 <div class="card">
 <h3>সংবাদ ২৪ বাংলা নিউজ রুম</h3>
-<p>আমাদের ভিডিও তৈরি হলে তার YouTube লিংক এখানে যুক্ত করা হবে।</p>
-<a href="https://www.youtube.com/" target="_blank"><button>ইউটিউব খুলুন</button></a>
+<p>আমাদের ভিডিও প্রতিবেদন এখানে প্রকাশ করা হবে।</p>
+<a class="video-button" href="https://www.youtube.com/" target="_blank" rel="noopener">ইউটিউব খুলুন</a>
 </div>
-<h2 class="section" id="gallery">ছবি গ্যালারি</h2>
+<h2 class="section-title" id="gallery">ছবি গ্যালারি</h2>
 <div class="card"><p>এখানে সংবাদভিত্তিক ছবি প্রকাশ করা হবে।</p></div>
-<h2 class="section" id="about">আমাদের সম্পর্কে</h2>
+<h2 class="section-title" id="about">আমাদের সম্পর্কে</h2>
 <div class="card">
 <p><b>সম্পাদক ও প্রকাশক:</b> মাহবুবুর রহমান বাবু</p>
 <p><b>অফিস:</b> দারুল আমান বাজার, নান্দ্রা, ডামুড্যা, শরীয়তপুর।</p>
 </div>
 </main>
 <footer>
-  <div style="text-align:center;margin:15px 0;">
-  <a href="https://www.facebook.com/" target="_blank" style="color:white;background:#1877f2;padding:10px 16px;text-decoration:none;border-radius:5px;margin:5px;display:inline-block;">Facebook</a>
-  <a href="https://www.youtube.com/" target="_blank" style="color:white;background:#e60000;padding:10px 16px;text-decoration:none;border-radius:5px;margin:5px;display:inline-block;">YouTube</a>
+<div class="social">
+<a class="facebook" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+<a class="youtube" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
 </div>
 <b>সংবাদ ২৪ বাংলা</b>
 <p>সত্যের সন্ধানে, সংবাদের সাথে</p>
@@ -279,73 +109,65 @@ style="width:180px;max-width:80%;height:auto;">
 <p>© সংবাদ ২৪ বাংলা — সর্বস্বত্ব সংরক্ষিত</p>
 </footer>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+ getFirestore, collection, getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDAWw7VG0UyWq8HNaLnk7Y46xHlZSaYPco",
-    authDomain: "sangbad24bangla-a9c20.firebaseapp.com",
-    projectId: "sangbad24bangla-a9c20",
-    storageBucket: "sangbad24bangla-a9c20.firebasestorage.app",
-    messagingSenderId: "324521515174",
-    appId: "1:324521515174:web:f89a4e4d629e2ac257fc67"
-  };
+const firebaseConfig = {
+ apiKey: "AIzaSyDAWw7VG0UyWq8HNaLnk7Y46xHlZSaYPco",
+ authDomain: "sangbad24bangla-a9c20.firebaseapp.com",
+ projectId: "sangbad24bangla-a9c20",
+ storageBucket: "sangbad24bangla-a9c20.firebasestorage.app",
+ messagingSenderId: "324521515174",
+ appId: "1:324521515174:web:f89a4e4d629e2ac257fc67"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const auth = getAuth(app);
-  async function loadNews() {
-  const newsBox = document.getElementById("firebase-news");
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  try {
-    const snapshot = await getDocs(collection(db, "news"));
+async function loadNews() {
+ const newsBox = document.getElementById("firebase-news");
 
-    if (snapshot.empty) {
-      newsBox.textContent = "এখনো কোনো খবর প্রকাশ করা হয়নি।";
-      return;
-    }
+ try {
+  const snapshot = await getDocs(collection(db, "news"));
 
-    newsBox.innerHTML = "";
-
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      const article = document.createElement("article");
-      const title = document.createElement("h3");
-      const content = document.createElement("p");
-const image = document.createElement("img");
-
-image.src = data.imageUrl || data.image || "";
-image.style.width = "100%";
-image.style.maxWidth = "600px";
-image.style.display = image.src ? "block" : "none";
-image.style.borderRadius = "8px";
-      title.textContent = data.title || data.headline || "সংবাদের শিরোনাম";
-      content.textContent = data.content || data.description || data.body || "";
-      content.style.whiteSpace = "pre-wrap";
-console.log("সংবাদের বিস্তারিত:", data.content);
-article.appendChild(image);
-      article.appendChild(title);
-      article.appendChild(content);
-      const detailsLink = document.createElement("a");
-
-detailsLink.href = "news-details.html?id=" + doc.id;
-detailsLink.textContent = "বিস্তারিত পড়ুন";
-detailsLink.style.display = "inline-block";
-detailsLink.style.background = "#08783d";
-detailsLink.style.color = "white";
-detailsLink.style.padding = "10px 15px";
-detailsLink.style.marginTop = "10px";
-detailsLink.style.textDecoration = "none";
-detailsLink.style.borderRadius = "5px";
-
-article.appendChild(detailsLink);
-      newsBox.appendChild(article);
-    });
-  } catch (error) {
-    console.error("খবর লোড করার সমস্যা:", error);
-    newsBox.textContent = "খবর লোড করা যায়নি।";
+  if (snapshot.empty) {
+   newsBox.textContent = "এখনো কোনো খবর প্রকাশ করা হয়নি।";
+   return;
   }
+
+  newsBox.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+   const data = doc.data();
+   const article = document.createElement("article");
+   const title = document.createElement("h3");
+   const content = document.createElement("p");
+   const image = document.createElement("img");
+
+   image.src = data.imageUrl || data.image || "";
+   image.style.display = image.src ? "block" : "none";
+
+   title.textContent = data.title || data.headline || "সংবাদের শিরোনাম";
+   content.textContent = data.content || data.description || data.body || "";
+
+   article.appendChild(image);
+   article.appendChild(title);
+   article.appendChild(content);
+
+   const detailsLink = document.createElement("a");
+   detailsLink.href = "news-details.html?id=" + encodeURIComponent(doc.id);
+   detailsLink.textContent = "বিস্তারিত পড়ুন";
+
+   article.appendChild(detailsLink);
+   newsBox.appendChild(article);
+  });
+
+ } catch (error) {
+  console.error("খবর লোড করার সমস্যা:", error);
+  newsBox.textContent = "খবর লোড করা যায়নি।";
+ }
 }
 
 loadNews();
