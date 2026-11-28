@@ -383,16 +383,21 @@ return dateB-dateA;
 newsList.forEach(data=>{
 if(selectedCategory && (data.category || "").trim() !== selectedCategory) return;
 const article = document.createElement("article");
-article.className = (selectedCategory === "" && document.getElementById("firebase-news").children.length === 0)
 
+article.className =
+  (selectedCategory === "" && newsBox.children.length === 0)
+  ? "news-card featured-news"
+  : "news-card";
+
+const publishDate = document.createElement("small");
 publishDate.textContent = data.createdAt
-  ? new Date(data.createdAt.seconds * 1000).toLocaleString("bn-BD")
+  ? (data.createdAt.toDate
+      ? data.createdAt.toDate().toLocaleString("bn-BD")
+      : "")
   : "";
 publishDate.style.display = "block";
 publishDate.style.color = "#666";
 publishDate.style.margin = "8px 0";
-  ? "news-card featured-news"
-  : "news-card";
 
 if(data.imageUrl || data.image){
 const image = document.createElement("img");
