@@ -327,7 +327,7 @@ appId: "1:324521515174:web:f89a4e4d629e2ac257fc67"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+let selectedCategory = "";
 async function loadNews(){
 const newsBox = document.getElementById("firebase-news");
 
@@ -363,7 +363,7 @@ return dateB-dateA;
 });
 
 newsList.forEach(data=>{
-
+if(selectedCategory && (data.category || "").trim() !== selectedCategory) return;
 const article = document.createElement("article");
 article.className = "news-card";
 
@@ -397,6 +397,22 @@ newsBox.textContent = "খবর লোড করা যায়নি।";
 }
 
 loadNews();
+ document.querySelectorAll(".category-box").forEach(box => {
+  const heading = box.querySelector("h3");
+  if (!heading) return;
+
+  const category = heading.textContent.trim();
+  box.style.cursor = "pointer";
+
+  box.addEventListener("click", () => {
+    selectedCategory = category;
+    document.getElementById("firebase-news").innerHTML = "";
+    document.getElementById("firebase-news").scrollIntoView({
+      behavior: "smooth"
+    });
+    loadNews();
+  });
+}); 
 </script>
 
 </body>
