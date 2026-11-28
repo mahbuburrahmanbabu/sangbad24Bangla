@@ -102,10 +102,14 @@ main{
   padding:15px;
 }
   /* প্রধান সংবাদ */
-.featured-news{
-  grid-column:1/-1;
-  border:2px solid #b5121b;
-  padding:20px;
+.featured-news::before{
+  content:"প্রধান সংবাদ";
+  display:block;
+  background:#b5121b;
+  color:white;
+  padding:8px 15px;
+  font-weight:bold;
+  margin-bottom:12px;
 }
 .featured-news img{
   width:100%;
