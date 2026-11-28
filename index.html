@@ -384,7 +384,7 @@ newsList.forEach(data=>{
 if(selectedCategory && (data.category || "").trim() !== selectedCategory) return;
 const article = document.createElement("article");
 article.className = (selectedCategory === "" && document.getElementById("firebase-news").children.length === 0)
-  const publishDate = document.createElement("small");
+
 publishDate.textContent = data.createdAt
   ? new Date(data.createdAt.seconds * 1000).toLocaleString("bn-BD")
   : "";
