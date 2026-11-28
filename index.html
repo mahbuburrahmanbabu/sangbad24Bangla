@@ -384,6 +384,13 @@ newsList.forEach(data=>{
 if(selectedCategory && (data.category || "").trim() !== selectedCategory) return;
 const article = document.createElement("article");
 article.className = (selectedCategory === "" && document.getElementById("firebase-news").children.length === 0)
+  const publishDate = document.createElement("small");
+publishDate.textContent = data.createdAt
+  ? new Date(data.createdAt.seconds * 1000).toLocaleString("bn-BD")
+  : "";
+publishDate.style.display = "block";
+publishDate.style.color = "#666";
+publishDate.style.margin = "8px 0";
   ? "news-card featured-news"
   : "news-card";
 
@@ -397,7 +404,7 @@ article.appendChild(image);
 const title = document.createElement("h3");
 title.textContent = data.title || data.headline || "সংবাদের শিরোনাম";
 article.appendChild(title);
-
+article.appendChild(publishDate);
 const content = document.createElement("p");
 content.textContent = data.content || data.description || data.body || "";
 article.appendChild(content);
